@@ -10,9 +10,24 @@ export default function NewModal(props) {
         </Modal.Header>
         <Modal.Body>{props.children}</Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={props.handleClose}>
-            Save Changes
-          </Button>
+          {props.buttons ? (
+            props.buttons.map((btn, index) => {
+              return (
+                <Button key={index} variant={btn.color} onClick={btn.onClick}>
+                  {btn.label}
+                </Button>
+              );
+            })
+          ) : (
+            <Button
+              variant="primary"
+              className="btn-sm"
+              onClick={props.handleClose}
+              style={{ backgroundColor: "#333" }}
+            >
+              Save
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </>

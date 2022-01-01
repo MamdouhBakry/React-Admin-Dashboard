@@ -208,7 +208,6 @@ export default function Products() {
   };
   return (
     <>
-      <Header />
       <Container fluid>
         <Row>
           <Layout sidebar />

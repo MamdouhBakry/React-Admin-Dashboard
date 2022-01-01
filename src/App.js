@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory, isUserLoggedIn } from "./actions";
 import { LinearProgress } from "@material-ui/core";
 import { getInitialData } from "./actions/initialData.action";
+import NewPage from "./container/NewPage/index";
 
 export const Home = React.lazy(() => import("./container/Home"));
 //import Home from "./container/Home";
@@ -38,17 +39,11 @@ function App() {
     <div className="App">
       <Suspense fallback={<LinearProgress />}>
         <Routes>
-          {/* Nested Routes and layout */}
-          {/* <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Layout />}>
-              <Route path="/home" exact element={<Home />} />
-              <Route path="products" exact element={<Products />} />
-              <Route path="orders" exact element={<Orders />} />
-              <Route path="categories" exact element={<Category />} />
-            </Route>
-          </Route> */}
           <Route exact element={<PrivateRoute />}>
             <Route path="/" exact element={<Home />} />
+          </Route>
+          <Route exact element={<PrivateRoute />}>
+            <Route path="/page" exact element={<NewPage />} />
           </Route>
           <Route exact element={<PrivateRoute />}>
             <Route path="/products" exact element={<Products />} />

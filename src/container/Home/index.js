@@ -8,7 +8,6 @@ import "./style.css";
 export default function Home() {
   return (
     <>
-      <Header />
       <Container fluid>
         <Row>
           <Layout />

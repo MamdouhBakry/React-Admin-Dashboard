@@ -6,7 +6,6 @@ import Layout from "../../components/Layout/index,";
 export default function Orders() {
   return (
     <>
-      <Header />
       <Container fluid>
         <Row>
           <Layout />

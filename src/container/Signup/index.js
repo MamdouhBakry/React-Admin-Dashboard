@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../../components/Layout/index,";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +17,6 @@ export default function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   //console.log(auth);
   if (user.loading) {
     return <p>Loading .....!</p>;

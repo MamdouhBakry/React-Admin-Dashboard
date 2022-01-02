@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Header from "../../components/Header";
+import React, { useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import Layout from "../../components/Layout/index,";
 import Input from "../../components/UI/Input/index";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategory } from "../../actions/category.action";
 import { addProduct } from "../../actions/product.action";
 import Modal from "../../components/UI/Modal/index";
 import "./style.css";
@@ -196,7 +194,7 @@ export default function Products() {
               {productDetails.productPictures.map((picture, index) => {
                 return (
                   <div className="productImgContainer" key={index}>
-                    <img src={generatePublicUrl(picture.img)} />
+                    <img src={generatePublicUrl(picture.img)} alt="" />
                   </div>
                 );
               })}

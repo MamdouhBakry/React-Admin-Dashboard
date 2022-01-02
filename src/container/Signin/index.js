@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../../components/Layout/index,";
+import React, { useState } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { login } from "../../actions";
@@ -11,7 +10,6 @@ import Header from "../../components/Header";
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   let auth = useSelector((state) => state.auth);
   let authen = auth.authenticate;
   const dispatch = useDispatch();

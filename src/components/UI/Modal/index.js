@@ -22,7 +22,7 @@ export default function NewModal(props) {
             <Button
               variant="primary"
               className="btn-sm"
-              onClick={props.handleClose}
+              onClick={props.onSubmit}
               style={{ backgroundColor: "#333" }}
             >
               Save

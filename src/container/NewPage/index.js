@@ -3,8 +3,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import Layout from "../../components/Layout/index,";
 import Modal from "../../components/UI/Modal/index";
 import Input from "../../components/UI/Input/index";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import linearCategories from "../../helpers/linearCategories";
+import { createPage } from "../../actions/page.actions";
 
 export default function NewPage() {
   const [createModal, setCreateModal] = useState(false);
@@ -16,30 +17,42 @@ export default function NewPage() {
   const [products, setProducts] = useState([]);
   const [type, setType] = useState("");
   const category = useSelector((state) => state.category);
+  const page = useSelector((state) => state.page);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log("category", category);
     setCategories(linearCategories(category.categories));
   }, [category]);
+  useEffect(() => {
+    console.log(page);
+    if (!page.loading) {
+      setCreateModal(false);
+      setTitle("");
+      setDesc("");
+      setCategoryId("");
+      setBanners([]);
+      setProducts([]);
+    }
+  }, [page]);
 
   const handleBannerImages = (e) => {
-    console.log(e);
     setBanners([...banners, e.target.files[0]]);
   };
 
   const handleProductImages = (e) => {
-    console.log(e);
     setProducts([...products, e.target.files[0]]);
   };
   const onCategoryChange = (e) => {
     const category = categories.find(
-      (category) => category._id == e.target.value
+      (category) => category.value === e.target.value
     );
     setCategoryId(e.target.value);
     setType(category.type);
   };
 
-  const submitPageForm = (e) => {
+  const submitPageForm = () => {
+    console.log("welcome page");
     const form = new FormData();
     if (title === "") {
       alert("Title is required");
@@ -57,6 +70,7 @@ export default function NewPage() {
       form.append("products", product);
     });
 
+    dispatch(createPage(form));
     setCreateModal(false);
   };
   const renderCreatePageModal = () => {
@@ -64,12 +78,13 @@ export default function NewPage() {
       <Modal
         modalTitle={"Add New Page"}
         show={createModal}
-        handleClose={submitPageForm}
+        handleClose={() => setCreateModal(false)}
+        onSubmit={submitPageForm}
       >
         <Container>
           <Row>
             <Col>
-              <select
+              {/* <select
                 className="form-control mb-2"
                 value={categoryId}
                 onChange={onCategoryChange}
@@ -82,7 +97,14 @@ export default function NewPage() {
                     </option>
                   );
                 })}
-              </select>
+              </select> */}
+              <Input
+                type={"select"}
+                value={categoryId}
+                onChange={onCategoryChange}
+                options={categories}
+                placeholder={"Select Category"}
+              />
             </Col>
           </Row>
           <Row>

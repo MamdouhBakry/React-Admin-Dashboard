@@ -1,7 +1,5 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout/index,";
 import "./style.css";
 

@@ -1,13 +1,9 @@
-// import React from "react";
-// import { Col, Container, Row } from "react-bootstrap";
-// import { NavLink } from "react-router-dom";
 import Header from "../Header";
 import "./layoutStyle.css";
 /////////////////////////////////////////////////////////////
-import React, { Suspense } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import { Col, Container, Row } from "react-bootstrap";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Col } from "react-bootstrap";
 
 export default function Layout(props) {
   return (

@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout/index,";
 
 export default function Orders() {

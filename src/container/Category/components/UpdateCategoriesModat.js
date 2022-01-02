@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../../../components/UI/Modal";
 import Input from "../../../components/UI/Input";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 const UpdateCategoriesModal = (props) => {
   const {
     show,
@@ -12,6 +12,7 @@ const UpdateCategoriesModal = (props) => {
     checkedArray,
     handleCategoryInput,
     categoryList,
+    onSubmit,
   } = props;
 
   console.log({ expandedArray, checkedArray });
@@ -21,6 +22,7 @@ const UpdateCategoriesModal = (props) => {
       handleClose={handleClose}
       modalTitle={modalTitle}
       size={size}
+      onSubmit={onSubmit}
     >
       <Row>
         <Col>

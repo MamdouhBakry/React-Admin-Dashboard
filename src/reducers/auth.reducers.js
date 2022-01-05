@@ -38,6 +38,7 @@ export default (state = initState, action) => {
     case authConstants.LOGOUT_SUCCESS:
       return {
         ...initState,
+        loading: false,
       };
     case authConstants.LOGOUT_FAILURE:
       return {

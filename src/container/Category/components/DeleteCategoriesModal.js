@@ -18,14 +18,15 @@ const DeleteCategoriesModal = (props) => {
       modalTitle={modalTitle}
       buttons={[
         {
-          label: "no",
+          label: "NO",
           color: "primary",
           onClick: () => {
             alert("No");
+            handleClose();
           },
         },
         {
-          label: "yes",
+          label: "YES",
           color: "danger",
           onClick: deleteCategories,
         },
@@ -33,11 +34,19 @@ const DeleteCategoriesModal = (props) => {
     >
       <h5>Expanded</h5>
       {expandedArray.map((item, index) => {
-        return <span key={index}>{item.name}</span>;
+        return (
+          <span style={{ fontSize: "14px" }} key={index}>
+            {item.name}
+          </span>
+        );
       })}
       <h5>Checked</h5>
       {checkedArray.map((item, index) => {
-        return <span key={index}>{item.name}</span>;
+        return (
+          <span style={{ fontSize: "14px" }} key={index}>
+            {item.name}
+          </span>
+        );
       })}
     </Modal>
   );

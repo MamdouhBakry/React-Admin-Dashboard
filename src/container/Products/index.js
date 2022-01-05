@@ -112,7 +112,7 @@ export default function Products() {
 
   const renderProducts = () => {
     return (
-      <Table responsive="sm">
+      <Table response="sm">
         <thead>
           <tr>
             <th>#</th>
@@ -120,6 +120,7 @@ export default function Products() {
             <th>Price</th>
             <th>Quantity</th>
             <th>Category</th>
+            <th>Product Details</th>
           </tr>
         </thead>
         <tbody>
@@ -134,7 +135,15 @@ export default function Products() {
                     <td>{prd.name}</td>
                     <td>{prd.price}</td>
                     <td>{prd.quantity}</td>
-                    <td>prd.category.name</td>
+                    <td>{prd.category.name}</td>
+                    <td>
+                      <button
+                        onClick={() => showProductDetailsModal(prd)}
+                        className="btn btn-success"
+                      >
+                        Details
+                      </button>
+                    </td>
                   </tr>
                 );
               })

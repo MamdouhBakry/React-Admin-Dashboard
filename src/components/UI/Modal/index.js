@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
+import "./style.css";
 
 export default function NewModal(props) {
   return (

@@ -9,7 +9,6 @@ import {
 } from "../../actions/category.action";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout/index,";
-import Modal from "../../components/UI/Modal/index";
 import CheckboxTree from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 import {
@@ -152,12 +151,10 @@ export default function Category() {
 
   const deleteCategory = () => {
     updateCheckedAndExpandedCategories();
+    setDeleteCategoryModal(true);
   };
   const deleteCategories = () => {
     const checkedIdsArray = checkedArray.map((item, index) => ({
-      _id: item.value,
-    }));
-    const expandedIdsArray = expandedArray.map((item, index) => ({
       _id: item.value,
     }));
     if (checkedIdsArray.length > 0) {

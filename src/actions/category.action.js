@@ -4,23 +4,27 @@ import { categoryConstants } from "./constants";
 const getAllCategory = () => {
   return async (dispatch) => {
     dispatch({ type: categoryConstants.GET_ALL_CATEGORIES_REQUEST });
-    const res = await axiosInstance.get("/category/getcategory");
-    console.log(res);
-    if (res.status === 200) {
-      const { categoryList } = res.data;
-      dispatch({
-        type: categoryConstants.GET_ALL_CATEGORIES_SUCCESS,
-        payload: {
-          categories: categoryList,
-        },
-      });
-    } else {
-      dispatch({
-        type: categoryConstants.GET_ALL_CATEGORIES_FAILURE,
-        payload: {
-          error: res.data.error,
-        },
-      });
+    try {
+      const res = await axiosInstance.get("/category/getcategory");
+      console.log(res);
+      if (res.status === 200) {
+        const { categoryList } = res.data;
+        dispatch({
+          type: categoryConstants.GET_ALL_CATEGORIES_SUCCESS,
+          payload: {
+            categories: categoryList,
+          },
+        });
+      } else {
+        dispatch({
+          type: categoryConstants.GET_ALL_CATEGORIES_FAILURE,
+          payload: {
+            error: res.data.error,
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -50,15 +54,19 @@ export const addCategory = (form) => {
 export const updateCategories = (form) => {
   return async (dispatch) => {
     dispatch({ type: categoryConstants.UPDATE_CATEGORIES_REQUEST });
-    const res = await axiosInstance.post("/category/update", form);
-    if (res.status === 201) {
-      dispatch({ type: categoryConstants.UPDATE_CATEGORIES_SUCCESS });
-      dispatch(getAllCategory());
-    } else {
-      dispatch({
-        type: categoryConstants.UPDATE_CATEGORIES_FAILURE,
-        payload: { error: res.data.error },
-      });
+    try {
+      const res = await axiosInstance.post("/category/update", form);
+      if (res.status === 201) {
+        dispatch({ type: categoryConstants.UPDATE_CATEGORIES_SUCCESS });
+        dispatch(getAllCategory());
+      } else {
+        dispatch({
+          type: categoryConstants.UPDATE_CATEGORIES_FAILURE,
+          payload: { error: res.data.error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -70,7 +78,7 @@ export const deleteCategories = (ids) => {
         ids,
       },
     });
-    if (res.status === 201) {
+    if (res.status === 200) {
       dispatch(getAllCategory());
       dispatch({ type: categoryConstants.DELETE_CATEGORIES_SUCCESS });
     } else {

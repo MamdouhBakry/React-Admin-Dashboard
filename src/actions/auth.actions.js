@@ -6,28 +6,32 @@ export const login = (user) => {
 
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGIN_REQUEST });
-    const res = await axiosInstance.post("/admin/signin", { ...user });
 
-    if (res.status === 200) {
-      const { token, user } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      dispatch({
-        type: authConstants.LOGIN_SUCCSESS,
-        payload: {
-          token,
-          user,
-        },
-      });
-    } else {
-      if (res.status === 400) {
+    try {
+      const res = await axiosInstance.post("/admin/signin", { ...user });
+      if (res.status === 200) {
+        const { token, user } = res.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
         dispatch({
-          type: authConstants.LOGIN_FAILURE,
+          type: authConstants.LOGIN_SUCCSESS,
           payload: {
-            error: res.data.error,
+            token,
+            user,
           },
         });
+      } else {
+        if (res.status === 400) {
+          dispatch({
+            type: authConstants.LOGIN_FAILURE,
+            payload: {
+              error: res.data.error,
+            },
+          });
+        }
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -58,19 +62,23 @@ export const isUserLoggedIn = () => {
 export const signout = () => {
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGOUT_REQUEST });
-    const res = await axiosInstance.post("/admin/signout");
-    if (res.status === 200) {
-      localStorage.clear();
-      dispatch({
-        type: authConstants.LOGOUT_SUCCESS,
-      });
-    } else {
-      dispatch({
-        type: authConstants.LOGOUT_FAILURE,
-        payload: {
-          error: res.data.error,
-        },
-      });
+    try {
+      const res = await axiosInstance.post("/admin/signout");
+      if (res.status === 200) {
+        localStorage.clear();
+        dispatch({
+          type: authConstants.LOGOUT_SUCCESS,
+        });
+      } else {
+        dispatch({
+          type: authConstants.LOGOUT_FAILURE,
+          payload: {
+            error: res.data.error,
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };

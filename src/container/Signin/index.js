@@ -24,7 +24,7 @@ export default function Signin() {
     dispatch(login(user));
     setTimeout(() => {
       navigate("/");
-    }, 500);
+    }, 200);
   };
   return (
     <>
@@ -34,7 +34,7 @@ export default function Signin() {
         <>
           {/* <Layout /> */}
           <Header />
-          <Container>
+          <Container style={{ marginTop: "6rem" }}>
             <Row className="mt-5">
               <Col md={{ span: 6, offset: 3 }}>
                 <Form onSubmit={userLogin}>

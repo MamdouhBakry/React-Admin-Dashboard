@@ -165,57 +165,51 @@ export default function Category() {
 
   const categoryList = createCategoryList(category.categories);
   return (
-    <>
-      <Header />
-      <Container fluid>
+    <Layout sidebar>
+      <Container>
         <Row>
-          <Layout />
-          <Col md={10} style={{ marginLeft: "auto", marginTop: "4rem" }}>
-            <Row>
-              <Col md={12}>
-                <div className="d-flex justify-content-between">
-                  <h3>Category</h3>
-                  <div className="actionBtnContainer">
-                    <span>Actions :</span>
-                    <button className="btn btn-primary" onClick={handleShow}>
-                      <IoIosAdd />
-                      add
-                    </button>
-                    <button
-                      onClick={() => deleteCategory()}
-                      className="btn btn-warning "
-                    >
-                      <IoIosTrash /> Delete
-                    </button>
-                    <button
-                      onClick={() => updateCategory()}
-                      className="btn btn-success "
-                    >
-                      <IoIosCloudUpload /> Edit
-                    </button>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12}>
-                {/* <ul>{renderCategories(category.categories)}</ul> */}
-                <CheckboxTree
-                  nodes={renderCategories(category.categories)}
-                  checked={checked}
-                  expanded={expanded}
-                  onCheck={(checked) => setChecked(checked)}
-                  onExpand={(expanded) => setExpanded(expanded)}
-                  icons={{
-                    check: <IoIosCheckbox />,
-                    uncheck: <IoIosCheckboxOutline />,
-                    halfCheck: <IoIosCheckboxOutline />,
-                    expandClose: <IoIosArrowForward />,
-                    expandOpen: <IoIosArrowDown />,
-                  }}
-                />
-              </Col>
-            </Row>
+          <Col md={12}>
+            <div className="d-flex justify-content-between">
+              <h3>Category</h3>
+              <div className="actionBtnContainer">
+                <span>Actions :</span>
+                <button className="btn btn-primary" onClick={handleShow}>
+                  <IoIosAdd />
+                  add
+                </button>
+                <button
+                  onClick={() => deleteCategory()}
+                  className="btn btn-warning "
+                >
+                  <IoIosTrash /> Delete
+                </button>
+                <button
+                  onClick={() => updateCategory()}
+                  className="btn btn-success "
+                >
+                  <IoIosCloudUpload /> Edit
+                </button>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            {/* <ul>{renderCategories(category.categories)}</ul> */}
+            <CheckboxTree
+              nodes={renderCategories(category.categories)}
+              checked={checked}
+              expanded={expanded}
+              onCheck={(checked) => setChecked(checked)}
+              onExpand={(expanded) => setExpanded(expanded)}
+              icons={{
+                check: <IoIosCheckbox />,
+                uncheck: <IoIosCheckboxOutline />,
+                halfCheck: <IoIosCheckboxOutline />,
+                expandClose: <IoIosArrowForward />,
+                expandOpen: <IoIosArrowDown />,
+              }}
+            />
           </Col>
         </Row>
       </Container>
@@ -253,6 +247,6 @@ export default function Category() {
         expandedArray={expandedArray}
         checkedArray={checkedArray}
       />
-    </>
+    </Layout>
   );
 }

@@ -162,21 +162,11 @@ export default function NewPage() {
     );
   };
   return (
-    <>
-      <Container fluid>
-        <Row>
-          <Layout />
-          <Col md={10} style={{ marginLeft: "auto", marginTop: "4rem" }}>
-            {renderCreatePageModal()}
-            <button
-              className="btn btn-primary"
-              onClick={() => setCreateModal(true)}
-            >
-              Create Page
-            </button>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Layout sidebar>
+      {renderCreatePageModal()}
+      <button className="btn btn-primary" onClick={() => setCreateModal(true)}>
+        Create Page
+      </button>
+    </Layout>
   );
 }

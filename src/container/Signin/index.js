@@ -5,7 +5,7 @@ import { login } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Home from "../Home";
-import Header from "../../components/Header";
+import Layout from "../../components/Layout/index,";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -24,16 +24,14 @@ export default function Signin() {
     dispatch(login(user));
     setTimeout(() => {
       navigate("/");
-    }, 200);
+    }, 400);
   };
   return (
     <>
       {authen ? (
         <Home />
       ) : (
-        <>
-          {/* <Layout /> */}
-          <Header />
+        <Layout>
           <Container style={{ marginTop: "6rem" }}>
             <Row className="mt-5">
               <Col md={{ span: 6, offset: 3 }}>
@@ -60,7 +58,7 @@ export default function Signin() {
               </Col>
             </Row>
           </Container>
-        </>
+        </Layout>
       )}
     </>
   );

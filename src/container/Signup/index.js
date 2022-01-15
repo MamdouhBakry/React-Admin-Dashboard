@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Home from "../Home";
 import { signup } from "../../actions";
-import Header from "../../components/Header";
+
+import Layout from "../../components/Layout/index,";
 
 export default function Signup() {
   const navigete = useNavigate();
@@ -39,9 +40,7 @@ export default function Signup() {
       {authen ? (
         <Home />
       ) : (
-        <>
-          {/* <Layout /> */}
-          <Header />
+        <Layout>
           <Container>
             {user.message}
             <Row className="mt-5">
@@ -89,7 +88,7 @@ export default function Signup() {
               </Col>
             </Row>
           </Container>
-        </>
+        </Layout>
       )}
     </>
   );

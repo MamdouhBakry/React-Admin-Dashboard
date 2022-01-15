@@ -3,7 +3,7 @@ import { Col, Container, Row, Table } from "react-bootstrap";
 import Layout from "../../components/Layout/index,";
 import Input from "../../components/UI/Input/index";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../actions/product.action";
+import { addProduct, deleteProductById } from "../../actions/product.action";
 import Modal from "../../components/UI/Modal/index";
 import "./style.css";
 import { generatePublicUrl } from "../../urlConfig";
@@ -36,7 +36,7 @@ export default function Products() {
   //console.log(productPictures);
   const handleShow = () => setShow(true);
   const handleClose = () => {
-    //console.log(name, quantity, price, description, productPictures);
+    console.log(name, quantity, price, description, productPictures);
     const form = new FormData();
     form.append("name", name);
     form.append("quantity", quantity);
@@ -57,6 +57,7 @@ export default function Products() {
         modalTitle={"Add New Product "}
         show={show}
         handleClose={handleClose}
+        onSubmit={handleClose}
       >
         <Input
           label="Name"
@@ -121,6 +122,7 @@ export default function Products() {
             <th>Quantity</th>
             <th>Category</th>
             <th>Product Details</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -142,6 +144,19 @@ export default function Products() {
                         className="btn btn-success"
                       >
                         Details
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          const payload = {
+                            productId: prd._id,
+                          };
+                          dispatch(deleteProductById(payload));
+                        }}
+                      >
+                        Delete
                       </button>
                     </td>
                   </tr>
@@ -214,29 +229,22 @@ export default function Products() {
     );
   };
   return (
-    <>
-      <Container fluid>
-        <Row>
-          <Layout sidebar />
-          <Col md={10} style={{ marginLeft: "auto", marginTop: "4rem" }}>
-            <Row>
-              <Col md={12}>
-                <div className="d-flex justify-content-between">
-                  <h3>Products</h3>
-                  <button className="btn btn-primary" onClick={handleShow}>
-                    add
-                  </button>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col>{renderProducts()}</Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+    <Layout sidebar>
+      <Row>
+        <Col md={12}>
+          <div className="d-flex justify-content-between">
+            <h3>Products</h3>
+            <button className="btn btn-primary" onClick={handleShow}>
+              add
+            </button>
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col>{renderProducts()}</Col>
+      </Row>
       {renderAddProductModel()}
       {renderProductDetailsModel()}
-    </>
+    </Layout>
   );
 }

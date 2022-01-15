@@ -6,14 +6,9 @@ import "./style.css";
 export default function Home() {
   return (
     <>
-      <Container fluid>
-        <Row>
-          <Layout />
-          <Col md={10} style={{ marginLeft: "auto", marginTop: "4rem" }}>
-            <h3>This is Home Page</h3>
-          </Col>
-        </Row>
-      </Container>
+      <Layout sidebar>
+        <h3>This Is Home Page</h3>
+      </Layout>
     </>
   );
 }

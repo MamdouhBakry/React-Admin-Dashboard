@@ -1,7 +1,7 @@
 import { productContants } from "../actions/constants";
 
 const initState = {
-  propducts: [],
+  products: [],
 };
 export default (state = initState, action) => {
   switch (action.type) {

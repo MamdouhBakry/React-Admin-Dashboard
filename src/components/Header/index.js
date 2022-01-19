@@ -45,7 +45,7 @@ export default function Header() {
   return (
     <>
       <Navbar
-        style={{ zIndex: 1 }}
+        style={{ zIndex: 2, height: "60px" }}
         collapseOnSelect
         expand="lg"
         bg="dark"

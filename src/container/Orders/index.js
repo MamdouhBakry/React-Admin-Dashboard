@@ -8,13 +8,13 @@ import "./style.css";
 
 const Orders = (props) => {
   const order = useSelector((state) => state.order);
-  console.log("orders", order);
+  console.log("orders", order.orders);
   const [type, setType] = useState("");
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getCustomerOrders());
-  // }, []);
+  useEffect(() => {
+    dispatch(getCustomerOrders());
+  }, []);
   const onOrderUpdate = (orderId) => {
     const payload = {
       orderId,

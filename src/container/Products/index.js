@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import Layout from "../../components/Layout/index,";
 import Input from "../../components/UI/Input/index";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, deleteProductById } from "../../actions/product.action";
+import {
+  addProduct,
+  deleteProductById,
+  getProducts,
+} from "../../actions/product.action";
 import Modal from "../../components/UI/Modal/index";
 import "./style.css";
 import { generatePublicUrl } from "../../urlConfig";
@@ -19,6 +23,7 @@ export default function Products() {
   const [productDetails, setProductDetails] = useState(null);
   const category = useSelector((state) => state.category);
   const product = useSelector((state) => state.product);
+  console.log("product", product);
   const dispatch = useDispatch();
 
   const createCategoryList = (categories, options = []) => {
@@ -33,7 +38,7 @@ export default function Products() {
   const handleProductPictures = (e) => {
     setProductPictures([...productPictures, e.target.files[0]]);
   };
-  //console.log(productPictures);
+  console.log(productPictures);
   const handleShow = () => setShow(true);
   const handleClose = () => {
     console.log(name, quantity, price, description, productPictures);
@@ -129,10 +134,7 @@ export default function Products() {
           {product.products.length > 0
             ? product.products.map((prd, index) => {
                 return (
-                  <tr
-                    onClick={() => showProductDetailsModal(prd)}
-                    key={prd._id}
-                  >
+                  <tr key={prd._id}>
                     <td>{index + 1}</td>
                     <td>{prd.name}</td>
                     <td>{prd.price}</td>

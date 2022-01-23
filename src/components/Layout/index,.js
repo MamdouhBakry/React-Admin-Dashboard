@@ -15,7 +15,9 @@ export default function Layout(props) {
             <Col md={2} className="sidebar">
               <ul>
                 <li>
-                  <NavLink to="/">Home</NavLink>
+                  <NavLink activeClassName="active" to="/">
+                    Home
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/page">Page</NavLink>

@@ -41,7 +41,7 @@ export default function Signup() {
         <Home />
       ) : (
         <Layout>
-          <Container>
+           <Container style={{ marginTop: "6rem" }}>
             {user.message}
             <Row className="mt-5">
               <Col md={{ span: 6, offset: 3 }}>
